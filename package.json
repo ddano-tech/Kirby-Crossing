@@ -1,0 +1,23 @@
+{
+  "name": "kirby-crossing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --test tests/state.test.js",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "prettier": "^3.6.2",
+    "vite": "6.4.1",
+    "vite-plugin-singlefile": "^2.3.0"
+  },
+  "dependencies": {
+    "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/playfair-display": "^5.2.8"
+  }
+}
