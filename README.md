@@ -6,7 +6,7 @@ This is an original browser implementation with procedural canvas art. It is not
 
 ## Play
 
-The production build is a **single standalone HTML file**, including fonts, artwork, code, and styles. Download `Kirby-Crossing.html` from the release artifact and open it in a current desktop Chrome, Edge, Firefox, or Safari browser. No installation or account is required. Save data is stored locally in the current browser; moving the HTML file, switching browsers, private browsing, or clearing site data can affect saves. Hosted play over HTTPS provides the most consistent controller and storage support.
+The production build is a **single standalone HTML file**, including fonts, artwork, code, and styles. On GitHub, choose **Code → Download ZIP**, unzip it, and open **`play/Kirby-Crossing.html`** in a current desktop Chrome, Edge, Firefox, or Safari browser. No installation or account is required. Save data is stored locally in the current browser; moving the HTML file, switching browsers, private browsing, or clearing site data can affect saves. Hosted play over HTTPS provides the most consistent controller and storage support.
 
 For development (Node.js 20.19+ or 22.12+):
 
@@ -15,7 +15,7 @@ npm ci
 npm run dev
 ```
 
-Open the address Vite prints in your own development environment. `npm run build` produces `dist/index.html`; any static HTTPS host can serve that file. `npm run preview` serves the production build locally.
+Open the address Vite prints in your own development environment. `npm run build` produces `dist/index.html` and refreshes the downloadable copy at `play/Kirby-Crossing.html`; any static HTTPS host can serve that file. `npm run preview` serves the production build locally.
 
 ## Controls
 
