@@ -22,10 +22,10 @@
     "Dedicated profile lock rejects duplicate launch before starting emulator",
     "SIGTERM cleanup stops child emulator, deletes new audio dumps and preserves prior recording/save fixtures"
   ],
-  "native_portal_gameplay_round_trip": "pending",
+  "native_portal_gameplay_round_trip": "passed: native OSReport event selected original Kirby first stage; Return to island restored control at original portal position",
   "limits": [
     "Mac-specific launcher execution and a physical PS5 controller have not been tested",
-    "Complete Animal Crossing feature regression and native save/reload have not been tested",
+    "Separate original island portal placement, complete Animal Crossing feature regression and native save/reload have not been tested",
     "Original GameCube town/island, not New Horizons island systems",
     "Tom Nook is static scenery in the first Kirby stage; later stages retain original content",
     "Engines stay separate; inventory and progression are not transferred between games",

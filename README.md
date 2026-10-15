@@ -2,7 +2,7 @@
 
 The original-game draft is in development. It runs the original Animal Crossing in Dolphin and the original Kirby 64 in a browser emulator. Both engines keep running while the browser switches control and sound. A native Animal Crossing mod draws Kirby using the original player actor, retaining its movement and action logic. Browser video, audio transport, keyboard input, and standard controller mappings are implemented.
 
-The first original Kirby stage now uses Animal Crossing's original grass texture and a static Tom Nook scenery cameo. The northern portal's complete gameplay round trip is still being tested. Physical PS5 hardware and full Animal Crossing feature regression remain unverified. This is a working draft in development, not the completed crossover.
+The first original Kirby stage now uses Animal Crossing's original grass texture and a static Tom Nook scenery cameo. The northern village portal switched directly into the running Kirby stage during playtesting; returning restores Animal Crossing control at the portal. Physical PS5 hardware and full Animal Crossing feature regression remain unverified. This is a working draft in development, not the completed crossover.
 
 See [original-game draft instructions](native_bridge/README.md). The Mac launcher prepares private copies from your own game ZIPs and requires Dolphin and Python 3. No game images are included in this repository. The older downloadable HTML below is the separate canvas prototype.
 
