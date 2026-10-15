@@ -2,3 +2,8 @@ node_modules/
 dist/
 .playwright/
 test-results/
+.draft-venv/
+mods/animal_crossing/__pycache__/
+
+__pycache__/
+*.pyc

@@ -1,0 +1,44 @@
+{
+  "deliverable": "Original-game working draft; not the earlier canvas prototype",
+  "tests": {
+    "python": {
+      "passed": 12,
+      "failed": 0
+    },
+    "browser_and_mapping": {
+      "passed": 6,
+      "failed": 0
+    }
+  },
+  "verified": [
+    "Unmodified original source builds match original executable/module/ROM checksums",
+    "Native Animal Crossing visibly renders Kirby and retains original train, dialogue, movement, house entrance and NPC interaction",
+    "Original Kirby 64 first-stage movement; original Animal Crossing triangular grass and correctly textured Tom Nook model visibly imported",
+    "Fresh browser boots original Kirby; manual switch and return; zero page errors",
+    "Input neutralization, stale revisions, ownership, held-button suppression and simulated standard DualSense mapping",
+    "Kirby boot failure preserves Animal Crossing controls and reports error",
+    "PNG cache and PCM transport; audible playback has not been judged on physical hardware",
+    "Full original ZIP preparation from extracted release archive yields byte-identical playtested private images",
+    "Dedicated profile lock rejects duplicate launch before starting emulator",
+    "SIGTERM cleanup stops child emulator, deletes new audio dumps and preserves prior recording/save fixtures"
+  ],
+  "native_portal_gameplay_round_trip": "pending",
+  "limits": [
+    "Mac-specific launcher execution and a physical PS5 controller have not been tested",
+    "Complete Animal Crossing feature regression and native save/reload have not been tested",
+    "Original GameCube town/island, not New Horizons island systems",
+    "Tom Nook is static scenery in the first Kirby stage; later stages retain original content",
+    "Engines stay separate; inventory and progression are not transferred between games",
+    "Requires local Dolphin and Python 3.10+; browser frontend is served by the local launcher"
+  ],
+  "assets": "No original game images or exported Nintendo models/textures are included in the release",
+  "prepared_artifact_checks": {
+    "disc_module_matches_compiled_mod": true,
+    "disc_main_dol_matches_original": true,
+    "kirby_header_crc_matches": true,
+    "kirby_matches_playtested_model_import": true,
+    "disc_bytes": 27839584,
+    "kirby_bytes": 33554432,
+    "kirby_sha256": "eba70278dc4636d8132e112736f4d7e757397bdcd817cde2cfd266072c571777"
+  }
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kirby Crossing — original-game draft</title>
+<style>body{max-width:680px;margin:60px auto;padding:24px;background:#172624;color:#eef6ee;font:18px system-ui;line-height:1.6}button,select{padding:12px;font:inherit;margin:8px 8px 8px 0}small{display:block;color:#c6d7cb}h1{line-height:1.2}</style>
+<h1>Kirby Crossing</h1>
+<p>Play the two original games here. Both keep running when you switch control.</p>
+<p>Leave Kirby somewhere safe before switching worlds.</p>
+<p id="waiting">Waiting for the original game to finish booting…</p>
+<div style="position:relative;width:100%;aspect-ratio:4/3;background:#000">
+<img id="screen" alt="Live original game" style="width:100%;height:100%;object-fit:contain;position:absolute;inset:0">
+<iframe id="kirby" title="Original Kirby 64 runtime" tabindex="-1" allow="autoplay; gamepad" style="width:100%;height:100%;border:0;position:absolute;inset:0;opacity:0;pointer-events:none"></iframe>
+</div>
+<label for="game">Control game</label><br>
+<select id="game"><option value="animal-crossing">Animal Crossing</option><option value="kirby64-vc">Kirby 64</option></select>
+<button id="enable">Enable controls</button>
+<button id="sound">Enable sound</button>
+<button id="return">Return to island</button>
+<p>Selected: <strong id="active">Animal Crossing</strong></p>
+<p id="status" role="status">Connecting to controller bridge…</p>
+<p>Keyboard: arrows move, X = A, Z = B, Enter = Start, Tab switches games.</p>
+<p>Other keyboard buttons: S = X, A = Y, Q/E = L/R, C = Z trigger. I/J/K/L provide D-pad up/left/down/right for menus.</p>
+<p>PS5: left stick moves, Circle = A, Cross = B, Options = Start, Create switches games. Connect the controller and press a button to make it visible to the browser.</p>
+<p>Square/Triangle = Y/X, L1/R1 = L/R, L2 or R2 = Z, D-pad = game D-pad, right stick = C stick.</p>
+<small>Only standard browser gamepad mappings are accepted. Physical PS5 support is awaiting testing. Changing game releases held inputs; pausing, hiding this tab, disconnecting a controller, or losing the bridge connection releases controls.</small>
+<script type="module" src="/controls.js"></script></html>

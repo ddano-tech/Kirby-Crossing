@@ -194,3 +194,9 @@ INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
 DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
+
+## Browser N64 emulator and dependencies
+
+The original-game draft includes N64Wasm and its ParaLLEl/RetroArch emulator core. See [provenance and corresponding source](vendor/n64/SOURCE.md), [GPL core notice](vendor/n64/licenses/CORE-GPL.txt), and [frontend MIT notice](vendor/n64/licenses/N64Wasm-MIT.txt). Web dependency notices are retained in `vendor/n64/licenses/` and the vendor files. No commercial game images are included.
+
+The CIC-6103 checksum helper in `mods/kirby64/checksum.py` follows the GPL checksum procedure credited to Parasyte, Andreas Sterbenz, and spinout. Its GPL-2.0-or-later notice and complete license are retained in `mods/kirby64/COPYING`.

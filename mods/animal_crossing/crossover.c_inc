@@ -1,0 +1,93 @@
+/* Original crossover drawing/event hooks. Original actor simulation is retained. */
+#include "dolphin/os.h"
+#include "m_field_info.h"
+#include "m_island.h"
+#include "libu64/gfxprint.h"
+#include "gfxalloc.h"
+#include "../src/game/crossover_mesh.c_inc"
+
+static int kc_portal_cooldown;
+static int kc_portal_near;
+static xyz_t kc_portal_position;
+
+static void kc_player_tick(ACTOR* actor, GAME* game) {
+    xyz_t* p = &actor->world.position;
+    f32 dx;
+    f32 dz;
+    int island_x[2];
+
+    kc_portal_near = FALSE;
+    if (kc_portal_cooldown > 0) kc_portal_cooldown--;
+    if (mFI_GetFieldId() != mFI_FIELD_FG) return;
+
+    /* The original game's island is two acres wide, south of the village. */
+    if (mFI_CheckInJustIslandOutdoor()) {
+        mFI_GetIslandBlockNumX(island_x);
+        mFI_BkandUtNum2CenterWpos(&kc_portal_position, island_x[0], mISL_BLOCK_Z, 8, 3);
+    } else {
+        /* Northern central acre, away from the train station at the boundary. */
+        mFI_BkandUtNum2CenterWpos(&kc_portal_position, 3, 1, 8, 10);
+    }
+    dx = p->x - kc_portal_position.x;
+    dz = p->z - kc_portal_position.z;
+    if (dx*dx + dz*dz < 160000.0f) {
+        kc_portal_position.y = mCoBG_GetBgY_OnlyCenter_FromWpos(kc_portal_position, 0.0f);
+        if (dx*dx + dz*dz < 4900.0f) {
+            kc_portal_near = TRUE;
+            if (chkTrigger(BUTTON_Z) && kc_portal_cooldown == 0 &&
+                ( ((PLAYER_ACTOR*)actor)->now_main_index == mPlayer_INDEX_WAIT ||
+                  ((PLAYER_ACTOR*)actor)->now_main_index == mPlayer_INDEX_WALK )) {
+                OSReport("KIRBY_CROSSING_PORTAL:ENTER\n");
+                kc_portal_cooldown = 120;
+            }
+        }
+    }
+}
+
+static void kc_draw_model(GAME* game, Gfx* model) {
+    GRAPH* graph = game->graph;
+    OPEN_DISP(graph);
+    gSPMatrix(NEXT_POLY_OPA_DISP, _Matrix_to_Mtx_new(graph), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gSPDisplayList(NEXT_POLY_OPA_DISP, model);
+    CLOSE_DISP(graph);
+}
+
+static void kc_draw_character(ACTOR* actor, GAME* game) {
+    /* Use the original actor transform and collision dimensions. */
+    kc_draw_model(game, kc_kirby_model);
+    _texture_z_light_fog_prim(game->graph);
+}
+
+static void kc_draw_portal(ACTOR* actor, GAME* game) {
+    f32 dx = actor->world.position.x - kc_portal_position.x;
+    f32 dz = actor->world.position.z - kc_portal_position.z;
+    GRAPH* graph = game->graph;
+    gfxprint_t printer;
+    Gfx* list;
+    Gfx* end;
+    if (mFI_GetFieldId() != mFI_FIELD_FG || dx*dx+dz*dz >= 160000.0f) return;
+    Matrix_push();
+    Matrix_translate(kc_portal_position.x, kc_portal_position.y, kc_portal_position.z, MTX_LOAD);
+    Matrix_scale(0.01f, 0.01f, 0.01f, MTX_MULT);
+    kc_draw_model(game, kc_portal_model);
+    Matrix_pull();
+    _texture_z_light_fog_prim(graph);
+
+    if (kc_portal_near) {
+        gfxprint_init(&printer);
+        OPEN_DISP(graph);
+        list = NOW_POLY_OPA_DISP;
+        end = gfxopen(list);
+        gSPDisplayList(NEXT_OVERLAY_DISP, end);
+        gfxprint_open(&printer, end);
+        gfxprint_color(&printer, 255, 225, 100, 255);
+        gfxprint_locate8x8(&printer, 5, 3);
+        gfxprint_printf(&printer, "STAR PORTAL - Z: DREAM LAND");
+        end = gfxprint_close(&printer);
+        gSPEndDisplayList(end++);
+        gfxclose(list, end);
+        SET_POLY_OPA_DISP(end);
+        CLOSE_DISP(graph);
+        gfxprint_cleanup(&printer);
+    }
+}
